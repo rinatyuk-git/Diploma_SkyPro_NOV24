@@ -7,3 +7,9 @@ class IsOwner(BasePermission):
         if obj.owner == request.user:
             return True
         return False
+
+
+class IsModerator(BasePermission):
+    """ Checking Moderator role """
+    def has_permission(self, request, view):
+        return request.user.groups.filter(name="moderator").exists()
