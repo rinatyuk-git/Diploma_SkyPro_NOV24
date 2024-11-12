@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_filters',
     'corsheaders',
+    'django_celery_beat',
+
 
     'users',
     'content',
@@ -192,6 +194,8 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # JWT settings
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
@@ -213,8 +217,8 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 
 # Settings for Celery Beat
 CELERY_BEAT_SCHEDULE = {
-    'share_information': {
-        'task': 'habits.tasks.share_information',
+    'doc_approving_message': {
+        'task': 'content.tasks.doc_approving_message',
         'schedule': timedelta(seconds=40),
     },
 }
