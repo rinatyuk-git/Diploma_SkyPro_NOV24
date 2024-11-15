@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_celery_beat',
 
-
     'users',
     'content',
 ]
@@ -111,17 +110,16 @@ REST_FRAMEWORK = {
 DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("NAME"),
-        "USER": os.getenv("DB_USER"),
-        'PASSWORD': os.getenv('PASSWORD'),
+        # "NAME": os.getenv("NAME"),
+        # "USER": os.getenv("DB_USER"),
+        # 'PASSWORD': os.getenv('PASSWORD'),
 
-        # "NAME": os.getenv("POSTGRES_DB"),
-        # "USER": os.getenv("POSTGRES_USER"),
-        # 'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        # 'HOST': os.getenv('POSTGRES_HOST'),
+        "NAME": os.getenv("POSTGRES_DB"),
+        "USER": os.getenv("POSTGRES_USER"),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -156,7 +154,7 @@ CORS_ALLOW_ALL_ORIGINS = False
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = os.getenv("LANGUAGE_CODE")
-
+# TIME_ZONE = 'Europe/Istanbul'
 TIME_ZONE = os.getenv("TIME_ZONE")
 
 USE_I18N = True
