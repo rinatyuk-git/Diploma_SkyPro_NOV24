@@ -24,6 +24,7 @@ class Document(models.Model):
         **NULLABLE,
     )  # Approval sign
     name = models.CharField(
+        max_length=255,
         verbose_name="Document Name",
         help_text="Specify Document Name",
     )  # Name of doc
