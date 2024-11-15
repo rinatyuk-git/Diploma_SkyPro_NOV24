@@ -26,9 +26,8 @@ class DocumentListAPIView(generics.ListAPIView):
     """ Viewing List of Documents """
     serializer_class = DocumentSerializer
 
-    # queryset = Document.objects.all()
-    # permission_classes = [~IsModerator | IsOwner,]
     def get_queryset(self):
+        """ Creating condition: Who can see docs list """
         user = self.request.user
         if user.is_superuser or user.is_staff:
             return Document.objects.all()
@@ -40,17 +39,4 @@ class DocumentRetrieveAPIView(generics.RetrieveAPIView):
     """ Viewing Details of Document """
     serializer_class = DocumentSerializer
     queryset = Document.objects.all()
-    permission_classes = IsOwner
-
-
-# class DocumentUpdateAPIView(generics.UpdateAPIView):
-#     """ Document Update """
-#     serializer_class = DocumentSerializer
-#     queryset = Document.objects.all()
-#     permission_classes = (IsModerator | IsOwner,)
-
-
-# class DocumentDestroyAPIView(generics.DestroyAPIView):
-#     queryset = Document.objects.all()
-#     permission_classes = (IsModerator | IsOwner,)
-#     # permission_classes = [~IsModerator | IsOwner]
+    permission_classes = [IsOwner]
